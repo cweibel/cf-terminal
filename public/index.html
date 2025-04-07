@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/xterm/css/xterm.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cloud Terminal</title>
+</head>
+<body>
+  <div id="terminal"></div>
+  <script src="https://unpkg.com/xterm/lib/xterm.js"></script>
+  <script>
+    const term = new Terminal();
+    term.open(document.getElementById('terminal'));
+    const socket = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host);
+    term.onData(data => socket.send(data));
+    socket.onmessage = e => term.write(e.data);
+  </script>
+</body>
+</html>

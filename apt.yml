@@ -1,0 +1,9 @@
+packages:
+  - curl
+  - apt-transport-https
+  - gnupg
+  - lsb-release
+  - software-properties-common
+  - wget
+  - tree
+
